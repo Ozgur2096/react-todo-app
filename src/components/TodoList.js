@@ -1,5 +1,9 @@
 import React from 'react';
 
 export const TodoList = () => {
-  return <div>TodoList</div>;
+  return (
+    <div className='todo-container'>
+      <ul className='todo-list'></ul>
+    </div>
+  );
 };
