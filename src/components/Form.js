@@ -16,7 +16,6 @@ export const Form = ({ todos, setTodos }) => {
       ]);
     }
     setInputText('');
-    console.log(todos);
   };
 
   return (
