@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export const Form = () => {
+export const Form = ({ todos, setTodos }) => {
+  const [inputText, setInputText] = useState('');
+
+  const inputTextHandler = e => {
+    setInputText(e.target.value);
+  };
+
+  const submitTodoHandler = e => {
+    e.preventDefault();
+    if (inputText) {
+      setTodos([
+        ...todos,
+        { text: inputText, completed: false, id: Math.random() * 1000 },
+      ]);
+    }
+    setInputText('');
+    console.log(todos);
+  };
+
   return (
     <form>
-      <input type='text' className='todo-input' />
-      <button className='todo-button' type='submit'>
+      <input
+        value={inputText}
+        onChange={e => {
+          inputTextHandler(e);
+        }}
+        type='text'
+        className='todo-input'
+      />
+      <button
+        className='todo-button'
+        type='submit'
+        onClick={e => {
+          submitTodoHandler(e);
+        }}
+      >
         <i className='fas fa-plus-square'></i>
       </button>
       <div className='select'>
