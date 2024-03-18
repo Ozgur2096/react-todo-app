@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const Form = ({ todos, setTodos }) => {
+export const Form = ({ todos, setTodos, setStatus }) => {
   const [inputText, setInputText] = useState('');
 
   const inputTextHandler = e => {
@@ -16,6 +16,10 @@ export const Form = ({ todos, setTodos }) => {
       ]);
     }
     setInputText('');
+  };
+
+  const statusHandler = e => {
+    setStatus(e.target.value);
   };
 
   return (
@@ -38,7 +42,13 @@ export const Form = ({ todos, setTodos }) => {
         <i className='fas fa-plus-square'></i>
       </button>
       <div className='select'>
-        <select name='todos' className='filter-todo'>
+        <select
+          onChange={e => {
+            statusHandler(e);
+          }}
+          name='todos'
+          className='filter-todo'
+        >
           <option value='all'>All</option>
           <option value='completed'>Completed</option>
           <option value='uncompleted'>Uncompleted</option>
